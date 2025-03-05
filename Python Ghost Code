@@ -1,0 +1,18 @@
+import builtins
+
+def ghost_code():
+    # Sistem üzerinde gizli bir şekilde kod çalıştırma
+    print("Hayalet kod başlatılıyor...")
+    
+    while True:
+        code = input("Kodunuzu yazın (çıkmak için 'exit' yazın): ")
+        
+        if code.lower() == "exit":
+            print("Hayalet kod sonlandırılıyor...")
+            break
+        
+        try:
+            # Kullanıcının yazdığı kodu çalıştırma
+            exec(code)
+        except Exception as e:
+            print(f"Hata: {e}")
