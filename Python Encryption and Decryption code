@@ -1,0 +1,36 @@
+import random
+import string
+
+def encrypt(text):
+    shift = random.randint(1, 25)  # Rastgele kaydırma değeri
+    encrypted_text = ""
+    
+    for char in text:
+        if char.isalpha():  # Sadece harfleri şifrele
+            shift_base = 65 if char.isupper() else 97  # Büyük/küçük harf için ayrı taban
+            encrypted_text += chr((ord(char) - shift_base + shift) % 26 + shift_base)
+        else:
+            encrypted_text += char  # Harf olmayan karakteri olduğu gibi bırak
+    return encrypted_text, shift
+
+def decrypt(encrypted_text, shift):
+    decrypted_text = ""
+    
+    for char in encrypted_text:
+        if char.isalpha():
+            shift_base = 65 if char.isupper() else 97
+            decrypted_text += chr((ord(char) - shift_base - shift) % 26 + shift_base)
+        else:
+            decrypted_text += char
+    return decrypted_text
+
+# Kullanıcıdan metin al
+plain_text = input("Enter the text to encrypt: ")
+
+# Şifrele
+encrypted_text, shift = encrypt(plain_text)
+print(f"Encrypted Text: {encrypted_text}")
+
+# Şifreyi çöz
+decrypted_text = decrypt(encrypted_text, shift)
+print(f"Decrypted Text: {decrypted_text}")
